@@ -5,7 +5,7 @@ from rest_framework.decorators import api_view, permission_classes
 from rest_framework.permissions import AllowAny
 from rest_framework.response import Response
 
-# from gamerraterapi.models import Gamer
+from gamerraterapi.models import Player
 
 @api_view(['POST'])
 @permission_classes([AllowAny])
@@ -60,7 +60,7 @@ def register_user(request):
     # )
 
     # Use the REST Framework's token generator on the new user account
-    token = Token.objects.create(user=gamer.user)
+    token = Token.objects.create(user=Player.user)
     # Return the token to the client
     data = { 'token': token.key }
     return Response(data)
