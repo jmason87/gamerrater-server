@@ -1,0 +1,15 @@
+[
+    {
+        "model": "gamerraterapi.game",
+        "pk": 1,
+        "fields": {
+            "title": "test game",
+            "description": "test description",
+            "designer": "test designer",
+            "year_released": 1999,
+            "number_of_players": 4,
+            "est_time_to_play": 60,
+            "age_recomendation": 12
+        }
+    }
+]

@@ -54,13 +54,13 @@ def register_user(request):
     )
 
     # Now save the extra info in the gamerraterapi_gamer table
-    # gamer = Gamer.objects.create(
-    #     bio=request.data['bio'],
-    #     user=new_user
-    # )
+    player = Player.objects.create(
+        name=request.data['name'],
+        user=new_user
+    )
 
     # Use the REST Framework's token generator on the new user account
-    token = Token.objects.create(user=Player.user)
+    token = Token.objects.create(user=player.user)
     # Return the token to the client
     data = { 'token': token.key }
     return Response(data)

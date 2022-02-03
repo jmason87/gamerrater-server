@@ -1,0 +1,11 @@
+[
+    {
+        "model": "gamerraterapi.image",
+        "pk": 1,
+        "fields": {
+            "image_url": "",
+            "game_id": 1,
+            "player_id": 1
+        }
+    }
+]

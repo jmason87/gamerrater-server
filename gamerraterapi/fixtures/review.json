@@ -1,0 +1,12 @@
+[
+    {
+        "model": "gamerraterapi.review",
+        "pk": 1,
+        "fields": {
+            "content": "test review",
+            "date": "2022-02-02",
+            "game_id": 1,
+            "player_id": 1
+        }
+    }
+]
