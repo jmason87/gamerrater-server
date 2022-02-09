@@ -20,7 +20,7 @@ class GameReviewView(ViewSet):
     def create(self, request):
         """Handles POSTS"""
         player = Player.objects.get(user=request.auth.user)
-        serializer = CreateReviewSerializer(date=request.data)
+        serializer = CreateReviewSerializer(data=request.data)
         serializer.is_valid(raise_exception=True)
         serializer.save(player=player)
         return Response(serializer.data, status=status.HTTP_201_CREATED)
