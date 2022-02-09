@@ -18,10 +18,20 @@ from django.conf.urls import include
 from django.urls import path
 from gamerraterapi.views import register_user, login_user
 from rest_framework import routers
-from gamerraterapi.views import GameView
+from gamerraterapi.views import GameView, CategoryView
 
 router = routers.DefaultRouter(trailing_slash=False)
+# DefaultRouter is a built in class in Django Rest, it sets up the resource
+# for each method this is present on the view
+# trailing_slash tells the router to accept /games instead of /games/
+# SEE CHAPTER 6 IN BOOK 2 LEVEL UP
 router.register(r'games', GameView, 'game')
+# the first pararmeter r'games' sets up the url
+# the second parameter GameView tells the server which view to use when it sees /games
+# The third parameter 'game' is called the base name. It acts as a nickname and
+# you'll really only see it in errors. Typically the singular of the plural r'url'
+# SEE CHAPTER 6 IN BOOK 2 LEVEL UP
+router.register(r'categories', CategoryView, 'category')
 
 urlpatterns = [
     path('register', register_user),

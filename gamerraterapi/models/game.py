@@ -8,3 +8,6 @@ class Game(models.Model):
     number_of_players = models.IntegerField()
     est_time_to_play = models.IntegerField()
     age_recomendation = models.IntegerField()
+    category = models.ForeignKey("Category", on_delete=models.CASCADE)
+    player = models.ForeignKey("Player", on_delete=models.CASCADE)
+
