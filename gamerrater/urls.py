@@ -18,7 +18,7 @@ from django.conf.urls import include
 from django.urls import path
 from gamerraterapi.views import register_user, login_user
 from rest_framework import routers
-from gamerraterapi.views import GameView, CategoryView
+from gamerraterapi.views import GameView, CategoryView, GameReviewView
 
 router = routers.DefaultRouter(trailing_slash=False)
 # DefaultRouter is a built in class in Django Rest, it sets up the resource
@@ -32,6 +32,7 @@ router.register(r'games', GameView, 'game')
 # you'll really only see it in errors. Typically the singular of the plural r'url'
 # SEE CHAPTER 6 IN BOOK 2 LEVEL UP
 router.register(r'categories', CategoryView, 'category')
+router.register(r'reviews', GameReviewView, 'review')
 
 urlpatterns = [
     path('register', register_user),
