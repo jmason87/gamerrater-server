@@ -55,7 +55,7 @@ def register_user(request):
 
     # Now save the extra info in the gamerraterapi_gamer table
     player = Player.objects.create(
-        name=request.data['name'],
+        bio=request.data['bio'],
         user=new_user
     )
 

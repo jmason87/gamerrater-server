@@ -1,31 +1,31 @@
-Fixtures are basically your INSERT INTO SQL statements. This is how you will seed your data base. 
-They are writting in JSON and srructed as follows:
-    [
-        {
-            "model": "<api_directory_name>.<file_name_from_models_folder>",
-            "pk": <primary key>,
-            "fields": {
-                "key": value,
-                "key": value,
-                "key": value
-            }
-        }
-    ]
+# Fixtures are basically your INSERT INTO SQL statements. This is how you will seed your data base. 
+# They are writting in JSON and srructed as follows:
+#     [
+#         {
+#             "model": "<api_directory_name>.<file_name_from_models_folder>",
+#             "pk": <primary key>,
+#             "fields": {
+#                 "key": value,
+#                 "key": value,
+#                 "key": value
+#             }
+#         }
+#     ]
 
-Line 5 is telling what model to use
-Line 6 is assigning the primary key
-Line 7 is the fields sections, this will hold all the key value pairs that must match
-the keys from the class that was defined in the model file.
+# Line 5 is telling what model to use
+# Line 6 is assigning the primary key
+# Line 7 is the fields sections, this will hold all the key value pairs that must match
+# the keys from the class that was defined in the model file.
 
-To actually insert the data into the data base, 
-run the following command in your terminal:
+# To actually insert the data into the data base, 
+# run the following command in your terminal:
 
-python3 manage.py loaddata <fixture_file_name> 
+# python3 manage.py loaddata <fixture_file_name> 
 
-No need for the .json on the end of <fixture_file_name>
+# No need for the .json on the end of <fixture_file_name>
 
-It is important to note that fixtures need to be implemted in a certain order depending on 
-foreign keys. If you try to import a fixture with a foreign key tied to a table(fixture)
-that hasnt been been imported yet, you'll get an error.
+# It is important to note that fixtures need to be implemted in a certain order depending on 
+# foreign keys. If you try to import a fixture with a foreign key tied to a table(fixture)
+# that hasnt been been imported yet, you'll get an error.
 
-*Reference chapter 4 in book 2 (level up)*
+# *Reference chapter 4 in book 2 (level up)*
