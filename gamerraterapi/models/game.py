@@ -1,4 +1,3 @@
-import imp
 from django.db import models
 from .rating import Rating
 
@@ -10,7 +9,7 @@ class Game(models.Model):
     number_of_players = models.IntegerField()
     est_time_to_play = models.IntegerField()
     age_recomendation = models.IntegerField()
-    category = models.ForeignKey("Category", on_delete=models.CASCADE)
+    category = models.ManyToManyField("Category", through="Game_Category", related_name="categories")
     player = models.ForeignKey("Player", on_delete=models.CASCADE)
 
     @property
@@ -28,5 +27,3 @@ class Game(models.Model):
             ratings_length = len(ratings)
             return total_rating / ratings_length
         return 0
-
-    

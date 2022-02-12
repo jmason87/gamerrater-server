@@ -29,7 +29,7 @@ class RatingSerializer(serializers.ModelSerializer):
     class Meta:
         model = Rating
         fields = ('id', 'rating', 'game', 'player')
-        depth = 2
+        depth = 1
         
 class CreateRatingSerializer(serializers.ModelSerializer):
     class Meta:

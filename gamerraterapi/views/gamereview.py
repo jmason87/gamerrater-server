@@ -24,6 +24,13 @@ class GameReviewView(ViewSet):
         serializer.is_valid(raise_exception=True)
         serializer.save(player=player)
         return Response(serializer.data, status=status.HTTP_201_CREATED)
+
+    def destroy(self, request, pk):
+        """doin the deletes"""
+        review = Review.objects.get(pk=pk)
+        review.delete()
+        return Response(None, status=status.HTTP_204_NO_CONTENT)
+        
     
 class ReviewSerializer(serializers.ModelSerializer):
     class Meta:

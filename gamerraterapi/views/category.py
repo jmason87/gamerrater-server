@@ -4,6 +4,8 @@ from rest_framework.response import Response
 from rest_framework import serializers
 from gamerraterapi.models import Category
 
+
+
 class CategoryView(ViewSet):
     def list (self, request):
         """handes GET all"""
@@ -16,6 +18,11 @@ class CategoryView(ViewSet):
         category = Category.objects.get(pk=pk)
         serializer = CategorySerializer(category)
         return Response(serializer.data)
+    
+
+    
+
+
 
 class CategorySerializer(serializers.ModelSerializer):
     class Meta:

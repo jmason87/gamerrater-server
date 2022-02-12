@@ -4,7 +4,8 @@ from rest_framework.response import Response
 from rest_framework import serializers, status
 # from django.core.exceptions import ValidationError
 from gamerraterapi.models import Game, Player
-from rest_framework.decorators import action
+from django.db.models import Q
+
 
 
 
@@ -15,11 +16,21 @@ class GameView(ViewSet):
         Returns:
             Response -- JSON serialized list of games
         """
+        search_text = self.request.query_params.get('q', None)      
         games = Game.objects.all()
         # .all() method of the ORM is the same as:
         # SELECT *
         # FROM gamerrater_game
         # games is now a list of games objects
+    
+        if search_text is not None:
+            games=Game.objects.filter(
+                Q(title__contains=search_text) |
+                Q(description__contains=search_text) |
+                Q(designer__contains=search_text)
+            )
+            
+            
         category = request.query_params.get('cat', None)
         # this is saying to look for a query string parameter. In this case the 'cat' specifies what we'll use in the url
         # if 'cat' is not present in the url, it will return None. ex url: http://localhost:8000/games?cat=1
@@ -83,10 +94,16 @@ class GameView(ViewSet):
         serializer.is_valid(raise_exception=True)
         serializer.save()
         return Response(None, status=status.HTTP_204_NO_CONTENT)
-        # The rest of the code is the same as the create except we aren't passing anything in the response body to Response and
-        # a successfull PUT will display a 204 HTTP code
-
-
+        # The rest of the code is the same as the create except we aren't passing anything in the response body (the None) 
+        # to Response and a successfull PUT will display a 204 HTTP code
+        
+    def destroy(self, request, pk):
+        """doin the deletes"""
+        game = Game.objects.get(pk=pk)
+        game.delete()
+        return Response(None, status=status.HTTP_204_NO_CONTENT)
+        
+        
 class GameSerializer(serializers.ModelSerializer):
     """SEE CHAPTER 6 IN BOOK 2 LEVEL UP
     The serializer class determines how the python data should be
@@ -99,6 +116,7 @@ class GameSerializer(serializers.ModelSerializer):
         fields = ('id', 'title', 'description', 'designer', 'year_released',
                   'number_of_players', 'est_time_to_play', 'age_recomendation', 'category', 'player', 'average_rating')
         depth = 1
+        # depth allows us to expand foreign key objects similar to a expand query string parameter.
         
 class CreateGameSerializer(serializers.ModelSerializer):
     """SEE CHAPTER 8 IN BOOK 2 LEVEL UP"""
