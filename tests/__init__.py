@@ -1,0 +1,1 @@
+from .gamerater_tests import GameTests
